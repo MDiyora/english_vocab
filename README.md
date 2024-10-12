@@ -1,1 +1,1 @@
-## Website to boost vocabulary alongside differenciating american and british accents
+## Website to boost English vocabulary alongside differentiating American and British accents
