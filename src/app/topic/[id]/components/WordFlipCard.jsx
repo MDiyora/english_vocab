@@ -1,20 +1,27 @@
 "use client";
 
 import Button from "@/components/common/Button";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useWithSound } from "@/hooks/useWithSound";
 
 export default function WordFlipCard() {
   const [isFlipped, setIsFlipped] = useState(false);
+  const { playSound } = useWithSound("/sound.mp3");
 
-  // Toggle flip state on click
-  const handleFlip = () => setIsFlipped((prev) => !prev);
+  const handleFlip = (e) => {
+    e.stopPropagation();
+    setIsFlipped((prev) => !prev);
+  };
+
+  const handleButtonClick = (e) => {
+    e.stopPropagation();
+    playSound();
+  };
 
   return (
-    <div
-      className="h-72 [perspective:1000px] z-40"
-      onClick={handleFlip} // Flip on click
-    >
+    <div className="h-72 [perspective:1000px] z-40" onClick={handleFlip}>
       <div
         className={`relative h-full w-full shadow-xl transition-all duration-500 
           [transform-style:preserve-3d] rounded-xl bg-slate-50/80 p-6 
@@ -23,10 +30,18 @@ export default function WordFlipCard() {
       >
         {/* Front Face */}
         <div className="absolute inset-0 h-full w-full rounded-xl [backface-visibility:hidden]">
-          <div className="absolute w-full inset-0 flex items-center justify-center">
+          <div className="absolute w-full inset-0 flex flex-col items-center justify-center">
             <p className="max-w-80 text-2xl italic font-semibold text-slate-900 dark:text-slate-50 group-hover:text-sky-500 dark:group-hover:text-sky-400">
               Island
             </p>
+            <div className="flex flex-row gap-4">
+              <div onClick={handleButtonClick}>
+                <Image src="/uk.png" alt="UK flag" width={20} height={20} />
+              </div>
+              <div>
+                <Image src="/us.png" alt="US flag" width={20} height={20} />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -36,7 +51,7 @@ export default function WordFlipCard() {
             <p className="text-lg text-pretty text-center mb-4">
               A piece of land surrounded by water
             </p>
-            <Link href={`/topic/1`} className="inline-flex">
+            <Link href={`/topic/1/word/island`} className="inline-flex">
               <Button>More</Button>
             </Link>
           </div>

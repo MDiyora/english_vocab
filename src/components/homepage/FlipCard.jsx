@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function FlipCard() {
   return (
     <div className="group h-80 [perspective:1000px] z-40">
-      <div className="relative h-full w-full rounded-3xl shadow-xl transition-all duration-500 bg-[#1e293b] [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+      <div className="relative h-full w-full rounded-3xl shadow-xl transition-all duration-500 bg-slate-50 dark:bg-slate-800/50 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
         {/* Front Face */}
         <div className="absolute inset-0 h-full w-full rounded-xl [backface-visibility:hidden]">
           <Image
@@ -22,7 +22,7 @@ export default function FlipCard() {
           </div>
         </div>
         {/* Back Face */}
-        <div className="absolute inset-0 h-full w-full rounded-xl bg-[#1e293b] text-white px-12 text-center  [transform:rotateY(180deg)] [backface-visibility:hidden]">
+        <div className="absolute inset-0 h-full w-full rounded-xl bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 px-12 text-center  [transform:rotateY(180deg)] [backface-visibility:hidden]">
           <div className="flex min-h-full flex-col items-center justify-center">
             <p className="text-lg text-pretty text-center mb-4">
               Is it ‘forest’ or ‘woods’?
